@@ -28,7 +28,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      flash[:success] = "Your post has been created."
+      flash[:success] = "Post updated hombre."
       redirect_to @post
     else
       flash[:alert] = "Something gone wrong... try again."
@@ -37,9 +37,13 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
-    flash[:success] = 'Post was successfully destroyed.'
-    redirect_to posts_path
+    if @post.destroy
+      flash[:success] = 'Post was successfully destroyed.'
+      redirect_to posts_path
+    else
+      flash[:alert] = "Something gone wrong... try again."
+      redirect_to @post
+    end
   end
 
   private
