@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :owned_post, only: [:edit, :update, :destroy]
-  
+
   def index
     @posts = Post.all
   end
@@ -19,7 +19,7 @@ class PostsController < ApplicationController
 
     if @post.save
       flash[:success] = "Your post has been created."
-      redirect_to posts_path
+      redirect_to @post
     else
       flash[:alert] = "Halt, you fiend! You need an image to post here!"
       render :new
