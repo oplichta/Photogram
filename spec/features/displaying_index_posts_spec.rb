@@ -1,11 +1,19 @@
 require 'rails_helper'
 
-feature 'Creating posts' do
-  it 'needs an image to create a post' do
+feature 'Displaying index posts' do
+  background do
+    create(:post, caption: 'This is post one')
+    create(:post, caption: 'This is the second post')
+    user = create :user
+
     visit '/'
-    click_link 'New Post'
-    fill_in 'Caption', with: 'No picture because YOLO'
-    click_button 'Create Post'
-    expect(page).to have_content("Halt, you fiend! You need an image to post here!")
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
+    click_button 'Log in'
+  end
+  scenario 'the index lists all posts' do
+    expect(page).to have_content('This is post one')
+    expect(page).to have_content('This is the second post')
+    expect(page).to have_css("img[src*='coffee']")
   end
 end

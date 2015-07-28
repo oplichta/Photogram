@@ -11,6 +11,7 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'database_cleaner'
 require 'devise'
+require 'helpers/auth_helper'
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -19,6 +20,7 @@ RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, type: :controller
+  config.include AuthHelpers, type: :feature
 
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!

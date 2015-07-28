@@ -13,41 +13,41 @@ RSpec.describe PostsController, type: :controller do
   describe 'POST create' do
     context 'when user is not signed in' do
       describe 'with valid params' do
-      it 'redirects user to login page' do
+        it 'redirects user to login page' do
           post :create, post: valid_attributes
           expect(response).to redirect_to(new_user_session_path)
         end
-    end
+      end
 
-    describe 'PUT update' do
-      it 'redirects user to login page' do
-        post = create(:post)
-        put :update, id: post.to_param, caption: { title: 'MyString' }
-        expect(response).to redirect_to(new_user_session_path)
+      describe 'PUT update' do
+        it 'redirects user to login page' do
+          post = create(:post)
+          put :update, id: post.to_param, caption: { title: 'MyString' }
+          expect(response).to redirect_to(new_user_session_path)
+        end
+      end
+
+      describe 'GET edit' do
+        it 'redirects user to login page' do
+          post = create(:post)
+          get :edit, id: post.to_param
+          expect(response).to redirect_to(new_user_session_path)
+        end
       end
     end
-
-    describe 'GET edit' do
-      it 'redirects user to login page' do
-        post = create(:post)
-        get :edit, id: post.to_param
-        expect(response).to redirect_to(new_user_session_path)
-      end
-    end
-  end
 
     describe 'GET index' do
-      it 'not redirects user to login page' do
+      it 'redirects user to login page' do
         create(:post)
         get :index
-        expect(response).to_not redirect_to(new_user_session_path)
+        expect(response).to redirect_to(new_user_session_path)
       end
     end
 
     describe 'GET show' do
       it 'redirects user to login page' do
         post = create(:post)
-        get :show, { id: post.to_param}
+        get :show, id: post.to_param
         expect(response).to redirect_to(new_user_session_path)
       end
     end
@@ -102,7 +102,6 @@ RSpec.describe PostsController, type: :controller do
         end
       end
     end
-
 
     describe 'PUT update' do
       describe 'with valid params' do

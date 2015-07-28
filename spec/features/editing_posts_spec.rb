@@ -2,13 +2,16 @@ require 'rails_helper'
 
 feature 'Editing posts' do
   background do
-    post = create(:post)
-    visit '/'
-    find(:xpath, "//a[contains(@href,\"posts/#{post.id}\")]").click
-    click_link 'Edit'
+    user = create :user
+    create(:post, user_id: user.id)
+
+    sign_in_with user
+
+    find(:xpath, "//a[contains(@href,\"posts/1\")]").click
+    click_link 'Edit Post'
   end
 
-  scenario 'Can edit a post' do
+  scenario 'edit a post' do
     fill_in 'Caption', with: "Oh god, you weren't meant to see this picture!"
     click_button 'Update Post'
 
