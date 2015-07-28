@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, :except => [:index]
+  before_action :authenticate_user!, except: :index
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :owned_post, only: [:edit, :update, :destroy]
 
@@ -18,10 +18,10 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      flash[:success] = "Your post has been created."
+      flash[:success] = 'Your post has been created.'
       redirect_to @post
     else
-      flash[:alert] = "Halt, you fiend! You need an image to post here!"
+      flash[:alert] = 'Halt, you fiend! You need an image to post here!'
       render :new
     end
   end
@@ -31,10 +31,10 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      flash[:success] = "Post updated hombre."
+      flash[:success] = 'Post updated hombre.'
       redirect_to @post
     else
-      flash[:alert] = "Something gone wrong... try again."
+      flash[:alert] = 'Something gone wrong... try again.'
       render :edit
     end
   end
@@ -44,12 +44,13 @@ class PostsController < ApplicationController
       flash[:success] = 'Post was successfully destroyed.'
       redirect_to posts_path
     else
-      flash[:alert] = "Something gone wrong... try again."
+      flash[:alert] = 'Something gone wrong... try again.'
       redirect_to @post
     end
   end
 
   private
+
   def post_params
     params.require(:post).permit(:caption, :image)
   end
@@ -59,9 +60,8 @@ class PostsController < ApplicationController
   end
 
   def owned_post
-    unless current_user == @post.user
-      flash[:alert] = "That post doesn't belong to you!"
-      redirect_to root_path
-    end
+    return false if current_user == @post.user
+    flash[:alert] = "That post doesn't belong to you!"
+    redirect_to root_path
   end
 end

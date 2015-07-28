@@ -5,9 +5,9 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
- protected
+  protected
 
- def configure_permitted_parameters
-   devise_parameter_sanitizer.for(:sign_up) << :username << :email
- end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.for(:sign_in) { |user| user.permit(:username, :email) }
+  end
 end

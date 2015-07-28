@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-feature 'Creating a new user' do
+feature 'User registration' do
   background do
     visit '/'
     click_link 'Register'
   end
 
-  scenario 'can create a new user via index page' do
+  scenario 'create a new user via index page' do
     fill_in 'User name', with: 'sxyrailsdev'
     fill_in 'Email', with: 'sxyrailsdev@myspace.com'
     fill_in 'Password', with: 'supersecret', match: :first
@@ -16,7 +16,7 @@ feature 'Creating a new user' do
     expect(page).to have_content('Welcome! You have signed up successfully.')
   end
 
-  scenario 'requires a user name to successfully create an account' do
+  scenario 'requires a user name' do
     fill_in 'Email', with: 'sxyrailsdev@myspace.com'
     fill_in 'Password', with: 'supersecret', match: :first
     fill_in 'Password confirmation', with: 'supersecret'

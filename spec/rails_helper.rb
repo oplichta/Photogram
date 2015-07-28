@@ -5,7 +5,7 @@ SimpleCov.start
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
@@ -20,9 +20,9 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, type: :controller
 
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
-  config.order = "random"
+  config.order = 'random'
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :truncation
