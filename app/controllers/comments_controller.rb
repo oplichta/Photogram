@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_post
+  before_action :owned_comment, only: [:destroy]
 
   def create
     @comment = @post.comments.build(comment_params)
@@ -34,5 +35,12 @@ class CommentsController < ApplicationController
 
   def set_post
     @post = Post.find(params[:post_id])
+  end
+
+  def owned_comment
+    @comment = @post.comments.find(params[:id])
+    return false if current_user == @comment.user
+    flash[:alert] = "That doesn't belong to you!"
+    redirect_to root_path
   end
 end
