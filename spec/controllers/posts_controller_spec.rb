@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe PostsController, type: :controller do
-
   let(:valid_attributes) do
     {
       image: Rack::Test::UploadedFile.new(Rails.root +
@@ -10,7 +9,7 @@ RSpec.describe PostsController, type: :controller do
     }
   end
 
-  describe 'POST create' do
+  describe 'POST /create' do
     context 'when user is not signed in' do
       describe 'with valid params' do
         it 'redirects user to login page' do
@@ -19,7 +18,7 @@ RSpec.describe PostsController, type: :controller do
         end
       end
 
-      describe 'PUT update' do
+      describe 'PUT /update' do
         it 'redirects user to login page' do
           post = create(:post)
           put :update, id: post.to_param, caption: { title: 'MyString' }
@@ -27,7 +26,7 @@ RSpec.describe PostsController, type: :controller do
         end
       end
 
-      describe 'GET edit' do
+      describe 'GET /edit' do
         it 'redirects user to login page' do
           post = create(:post)
           get :edit, id: post.to_param
@@ -36,7 +35,7 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
-    describe 'GET index' do
+    describe 'GET /index' do
       it 'redirects user to login page' do
         create(:post)
         get :index
@@ -44,7 +43,7 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
-    describe 'GET show' do
+    describe 'GET /show' do
       it 'redirects user to login page' do
         post = create(:post)
         get :show, id: post.to_param
@@ -52,7 +51,7 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
-    describe 'GET new' do
+    describe 'GET /new' do
       it 'redirects user to login page' do
         get :new
         expect(response).to redirect_to(new_user_session_path)
@@ -89,30 +88,31 @@ RSpec.describe PostsController, type: :controller do
       end
 
       describe 'with invalid params' do
-        it 'expose a newly created but unsaved post' do
+        before do
           allow_any_instance_of(Post).to receive(:save).and_return(false)
+        end
+
+        it 'expose a newly created but unsaved post' do
           post :create, post: { 'caption' => 'invalid value' }
           expect(assigns(:post)).to be_a_new(Post)
         end
 
         it "re-renders the 'new' template" do
           post :create, post: { 'caption' => 'invalid value' }
-          allow_any_instance_of(Post).to receive(:save).and_return(false)
           expect(response).to render_template('new')
         end
       end
     end
 
-    describe 'PUT update' do
+    describe 'PUT /update' do
       describe 'with valid params' do
         let(:user) { create(:user) }
-        let(:post) { create(:post, user: user ) }
+        let(:post) { create(:post, user: user) }
 
         before do
           @request.env['devise.mapping'] = Devise.mappings[:user]
-          @user = FactoryGirl.create(:user)
           sign_in :user, user
-          post.user = @user
+          post.user = user
         end
 
         it 'updates the requested post' do
@@ -133,20 +133,19 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
-  describe 'DELETE destroy' do
+  describe 'DELETE /destroy' do
     let(:user) { create(:user) }
     let(:post) { create(:post, user: user) }
 
     context 'user is signed in' do
       before do
         @request.env['devise.mapping'] = Devise.mappings[:user]
-        @user = FactoryGirl.create(:user)
         sign_in :user, user
-        post.user = @user
+        post.user = user
       end
 
       it 'destroys the requested post' do
-        expect {
+        expect{
           delete :destroy, id: post.to_param
         }.to change(Post, :count).by(-1)
       end
