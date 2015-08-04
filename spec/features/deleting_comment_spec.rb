@@ -9,17 +9,20 @@ feature 'Deleting comments' do
     create(:comment, id: 2, user_id: user.id, post_id: post.id, content: 'Superb photo!')
     sign_in_with user_two
   end
+
   scenario 'user can delete comments' do
     visit '/'
     expect(page).to have_content('Nice post!')
     click_link 'delete-1'
     expect(page).not_to have_content('Nice post!')
   end
-  scenario 'user cannot delet a comment via the UI' do
+
+  scenario 'cannot delete via the UI' do
     visit '/'
     expect(page).to have_content('Superb photo!')
     expect(page).not_to have_css('#delete-2')
   end
+
   scenario 'cannot delete not own comment' do
     visit '/'
     expect(page).to have_content('Superb photo!')

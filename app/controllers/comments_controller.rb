@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
       flash[:success] = 'Comment was successfully destroyed.'
       redirect_to root_path
     else
-      flash[:alert] = 'Something gone wrong... try again.'
+      flash[:alert] = 'Something went wrong... try again.'
       redirect_to root_path
     end
   end

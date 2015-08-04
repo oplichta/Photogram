@@ -8,7 +8,8 @@ feature 'Deleting posts' do
     find(:xpath, "//a[contains(@href,\"posts/1\")]").click
     click_link 'Edit Post'
   end
-  scenario do
+
+  scenario 'can delete a post' do
     click_link 'Delete Post'
 
     expect(page).to have_content('Post was successfully destroyed.')

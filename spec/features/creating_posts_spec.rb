@@ -8,7 +8,8 @@ feature 'Creating posts' do
     fill_in 'Password', with: user.password
     click_button 'Log in'
   end
-  scenario 'create a new post' do
+
+  scenario 'can create a new post' do
     visit '/'
     click_link 'New Post'
     attach_file('Image', 'spec/fixtures/images/coffee.png')
@@ -17,6 +18,7 @@ feature 'Creating posts' do
     expect(page).to have_content('#coffeetime')
     expect(page).to have_css("img[src*='coffee']")
   end
+
   scenario 'a post needs an image' do
     visit '/'
     click_link 'New Post'

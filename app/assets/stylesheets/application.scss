@@ -84,7 +84,7 @@ h1 {
   .user-name, .caption-content {
     display: inline;
   }
-  #comment {
+  .comment {
     margin-top: 7px;
     .user-name {
       font-weight: 500;
@@ -136,4 +136,9 @@ h1 {
 .edit-links {
   margin-top: 20px;
   margin-bottom: 40px;
+}
+
+#comment_content{
+  min-width: 80%;
+  margin-right: 15px;
 }

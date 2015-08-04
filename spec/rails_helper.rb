@@ -11,7 +11,7 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'database_cleaner'
 require 'devise'
-require 'helpers/auth_helper'
+require 'support/auth_helper'
 
 ActiveRecord::Migration.maintain_test_schema!
 

@@ -35,13 +35,13 @@ feature 'User registration' do
     expect(page).to have_content('minimum is 4 characters')
   end
 
-  scenario 'requires a user name to be not more than 20 characters' do
-    fill_in 'User name', with: 'h' * 21
+  scenario 'requires a user name to be not more than 12 characters' do
+    fill_in 'User name', with: 'h' * 13
     fill_in 'Email', with: 'sxyrailsdev@myspace.com'
     fill_in 'Password', with: 'supersecret', match: :first
     fill_in 'Password confirmation', with: 'supersecret'
 
     click_button 'Sign up'
-    expect(page).to have_content('maximum is 20 characters')
+    expect(page).to have_content('maximum is 12 characters')
   end
 end

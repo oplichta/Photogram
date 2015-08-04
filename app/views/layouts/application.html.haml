@@ -1,4 +1,4 @@
-!!!
+!!! 5
 %html
   %head
     %title Photogram
@@ -7,6 +7,7 @@
     = csrf_meta_tags
   %body
     = render 'layouts/navbar'
-    -flash.each do |name, msg|
-      = content_tag :div, msg, class: [:alert, alert_for(name)]
-    = yield
+    .container
+      -flash.each do |name, msg|
+        = content_tag :div, msg, class: [:alert, alert_for(name)]
+      = yield
