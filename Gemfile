@@ -12,6 +12,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'devise'
+gem 'rails_12factor'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'
