@@ -26,3 +26,5 @@ group :test do
   gem 'simplecov'
   gem 'fivemat'
 end
+
+ruby '2.2.2'
