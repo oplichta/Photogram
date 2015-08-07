@@ -27,7 +27,7 @@
               = time_ago_in_words comment.created_at
     .comment-like-form.row
       .like-button.col-sm-1
-        %span(class="glyphicon glyphicon-heart-empty")
+        %span(class="glyphicon glyphicon-heart glyphicon-heart-empty")
       .comment-form.col-sm-11
         = form_for [post, post.comments.new] do |f|
           = f.text_field :content, placeholder: 'Add a comment...'
