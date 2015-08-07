@@ -15,6 +15,7 @@ Photogram on  [Travis CI](https://travis-ci.org/oplichta/Photogram)
 ```
 bundle install
 rake db:migrate
+rake db:seed
 rails s
 ```
 * How to run the test suite
