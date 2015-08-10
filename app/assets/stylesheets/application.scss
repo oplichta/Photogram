@@ -130,12 +130,13 @@ h1 {
 }
 
 .form-wrapper {
-  width: 60%;
   margin: 20px auto;
-  background-color: #fff;
-  padding: 40px;
-  border: 1px solid #eeefef;
-  border-radius: 3px;
+  .panel {
+    padding: 40px;
+    border: 1px solid #eeefef;
+    border-radius: 3px;
+    img { padding: 24px; }
+  }
 }
 
 .edit-links {
@@ -185,4 +186,8 @@ h1 {
   -webkit-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+}
+
+#image-preview {
+  margin: 0px auto;
 }

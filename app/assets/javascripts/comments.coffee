@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-#TO DO - liking posts  
+#TO DO - liking posts
 $(document).ready ->
   $('.glyphicon').click ->
     $(this).toggleClass 'glyphicon-heart-empty'

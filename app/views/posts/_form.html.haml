@@ -1,8 +1,18 @@
 .form-wrapper
-  = simple_form_for @post, html: {class: 'form-horizontal', multipart: true } do |f|
-    .form-group
-      = f.input :image, as: :file
-    .form-group.text-center
-      = f.input :caption
-    .form-group.text-center
-      = f.button :submit, class: 'btn-success'
+  .container
+    .row
+      .col-md-6.col-md-offset-3
+        .panel
+          %h4.text-center Upload an image (this is required):
+          - if @post.image.exists?
+            .text-center
+              = image_tag @post.image.url(:medium), id: 'image-preview', class: 'img-responsive'
+          - else
+            = image_tag 'placeholder.png', id: 'image-preview', class: 'img-responsive'
+          = simple_form_for @post, html: { class: 'form-horizontal', multipart: true } do |f|
+            .form-group
+              = f.input :image, as: :file, label: false, input_html: { onChange: 'loadFile(event)' }
+            .form-group
+              = f.input :caption, label: false, placeholder: 'Add your caption :)'
+            .form-group
+              = f.button :submit, class: 'btn-success btn-block'
