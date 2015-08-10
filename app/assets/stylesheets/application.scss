@@ -9,6 +9,11 @@ body {
 h1 {
   margin-left: 25%;
 }
+
+.navbar{ margin-bottom: 0; }
+
+.alert { margin-bottom: 0px; }
+
 .navbar-brand {
   a {
     color: #125688;
@@ -141,4 +146,43 @@ h1 {
 .comment_content{
   min-width: 80%;
   margin-right: 15px;
+}
+
+.registration-bg {
+  padding-top: 4em;
+  padding-bottom: 14%;
+  height: 100%;
+  background: url(photo-background.jpeg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.log-in{
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border: none;
+}
+
+.panel {
+  border-radius: 8px;
+  padding: 24px;
+  .panel-heading{
+    h1 {
+      text-align: center;
+    }
+  }
+}
+
+.sign-in-bg {
+  padding-top: 4em;
+  padding-bottom: 18%;
+  height: 100%;
+  background-image: url(signin-bg.jpeg);
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
