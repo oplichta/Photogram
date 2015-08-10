@@ -16,7 +16,7 @@
 !/log/.keep
 /tmp
 /coverage
-/public
+/public/system
 
 # OS generated files #
 ######################
