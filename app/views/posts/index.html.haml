@@ -1,4 +1,6 @@
 %h1 Photogram
-.posts-wrapper.row
--@posts.each do |post|
-  = render 'post', post: post
+#posts
+  .posts-wrapper.row.page
+    = render @posts
+  .text-center
+    = paginate @posts

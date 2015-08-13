@@ -13,22 +13,10 @@
         .user-name
           = post.user.user_name
         = post.caption
-      - if post.comments
-        - post.comments.each do |comment|
-          .comment
-            .user-name
-              = comment.user.user_name
-            .comment-content
-              = comment.content
-            - if comment.user == current_user
-              = link_to post_comment_path(post, comment), method: :delete, id: 'delete-'+comment.id.to_s, data: { confirm: "Are you sure?" } do
-                %span(class="glyphicon glyphicon-remove delete-comment")
-            .time-ago
-              = time_ago_in_words comment.created_at
-    .comment-like-form.row
-      .like-button.col-sm-1
-        %span(class="glyphicon glyphicon-heart glyphicon-heart-empty")
-      .comment-form.col-sm-11
-        = form_for [post, post.comments.new] do |f|
-          = f.text_field :content, placeholder: 'Add a comment...'
-          = f.button :submit, class: 'btn'
+      .comments{id: "comments_#{post.id}"}
+        - if post.comments.any?
+          .paginator{id: "#comments-paginator-#{post.id}"}
+            - unless post.comments.count <= 4
+              = link_to "view all #{post.comments.count} comments", post_comments_path(post), remote: true, class: 'more-comments', data: {post_id: "#{post.id}", type: "html"}
+          = render post.comments.last(4), post: post
+    = render 'comments/form', post: post

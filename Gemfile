@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'devise'
 gem 'rails_12factor'
+gem 'kaminari', '~> 0.16.3'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0'

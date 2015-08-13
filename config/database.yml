@@ -3,14 +3,17 @@ development:
   database: photogram_development
   pool: 5
   timeout: 5000
+  min_messages: WARNING
 test:
   adapter: postgresql
   database: photogram_test
   pool: 5
   timeout: 5000
+  min_messages: WARNING
 
 production:
   adapter: postgresql
   database: photogram_production
   pool: 5
   timeout: 5000
+  min_messages: WARNING
